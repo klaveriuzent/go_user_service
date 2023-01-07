@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"log"
+	"time"
 	"userservice/controller"
 	"userservice/database"
+	"userservice/helper"
 	"userservice/middleware"
 	"userservice/schema"
 
@@ -35,10 +37,28 @@ func loadDatabase() {
 	database.Database.AutoMigrate(&schema.RoleApplication{})
 	database.Database.AutoMigrate(&schema.Account{})
 	database.Database.AutoMigrate(&schema.Article{})
+	database.Database.AutoMigrate(&schema.Address{})
 }
 
 func serveApplication() {
 	router := gin.Default()
+
+	current_time := time.Now()
+
+	// individual elements of time can
+	// also be called to print accordingly
+	fmt.Printf("%d-%02d-%02dT%02d:%02d:%02d-00:00\n",
+		current_time.Year(), current_time.Month(), current_time.Day(),
+		current_time.Hour(), current_time.Minute(), current_time.Second())
+
+	// formatting time using
+	// custom formats
+	fmt.Println(current_time.Format("2006-01-02 15:04:05"))
+	fmt.Println(current_time.Format("2006-January-02"))
+	fmt.Println(current_time.Format("2006-01-02 3:4:5 pm"))
+
+	genArticleId, _ := helper.GenerateArticleId(3)
+	fmt.Println(genArticleId)
 
 	publicRoutes := router.Group("/auth")
 	publicRoutes.POST("/register", controller.Register)

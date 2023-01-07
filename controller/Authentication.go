@@ -8,7 +8,6 @@ import (
 	"userservice/schema"
 
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
 )
 
 type RegisterSchema schema.Register
@@ -27,7 +26,7 @@ func Register(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	userID := uuid.New()
+	userID, _ := helper.GenerateByUUID()
 	roleMap := []schema.Role{}
 	for _, element := range data_roles {
 		roleMap = append(roleMap, schema.Role{Id: element.Id})

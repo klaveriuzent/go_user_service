@@ -2,7 +2,6 @@ package controller
 
 import (
 	"net/http"
-	"strconv"
 	"userservice/helper"
 	"userservice/model"
 
@@ -24,8 +23,8 @@ func ArticleAddNew(context *gin.Context) {
 	}
 
 	input.UserId = user.Id
-	unique, _ := helper.GenerateRandomSecureToken(10)
-	input.Id = strconv.Itoa(unique)
+	unique, _ := helper.GenerateArticleId(3)
+	input.Id = unique
 	savedEntry, err := input.Save()
 
 	if err != nil {

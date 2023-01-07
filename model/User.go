@@ -52,3 +52,9 @@ func (user *User) UserAssignRoles(id string, roleUpdates []schema.Role) (User, e
 	res, _ := FindUserById(id)
 	return res, nil
 }
+
+func (user *User) UserGetCount() int64 {
+	var result int64
+	database.Database.Model(&user).Count(&result)
+	return result
+}
