@@ -1,0 +1,8 @@
+PATCH  http://localhost:8000/api/article/1231379307/edit HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMwNzgzNDcsImlkIjoiZjAyODk3MDQtMTgwMC00NjQ5LWJiYjYtZGY3MzY3YWUxYzQyIn0.fmb1JnfbgDTn-0U3-DmsOocxRaZl8yI_vBU7s7JxImU
+
+{
+    "title": "Title Article Edit 1",
+    "content": "Content Article Edit 1"
+}

@@ -1,0 +1,7 @@
+POST http://localhost:8000/api/user/cdd0b403-217a-4948-86a9-ba47025353aa/assign_roles HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMwNzIxMjcsImlkIjoiNjU3YjI0ZDctM2IyMi00NjJhLThhMjQtYzg2N2Y0MzUwNDk3In0.oGEGW2IPsoEMgJH52eExbOLDcLfLOP2R37R7xXDSj48
+
+{
+    "role":["Administrator","Contributor","Editor","Subscriber"]
+}

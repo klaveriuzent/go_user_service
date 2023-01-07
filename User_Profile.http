@@ -1,0 +1,3 @@
+GET http://localhost:8000/api/user/f0289704-1800-4649-bbb6-df7367ae1c42 HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMwNzgzNDcsImlkIjoiZjAyODk3MDQtMTgwMC00NjQ5LWJiYjYtZGY3MzY3YWUxYzQyIn0.fmb1JnfbgDTn-0U3-DmsOocxRaZl8yI_vBU7s7JxImU

@@ -1,0 +1,8 @@
+POST http://localhost:8000/api/article HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMwNzc4NzQsImlkIjoiZjAyODk3MDQtMTgwMC00NjQ5LWJiYjYtZGY3MzY3YWUxYzQyIn0.wwpVb8KNQ_WxDRhAOodO8lvMx2sjr2biANklCSszR2s
+
+{
+    "title":"New Article",
+    "content":"Article Content"
+}
