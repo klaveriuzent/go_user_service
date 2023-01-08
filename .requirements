@@ -4,5 +4,6 @@ go get \
     github.com/joho/godotenv \
     golang.org/x/crypto \
     gorm.io/driver/postgres \
-    gorm.io/gorm
-    github.com/google/uuid
+    gorm.io/gorm \
+    github.com/google/uuid \
+    github.com/sirupsen/logrus

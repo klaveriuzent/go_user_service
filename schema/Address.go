@@ -3,7 +3,6 @@ package schema
 import (
 	"time"
 
-	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
@@ -27,7 +26,7 @@ func (Address) TableName() string {
 }
 
 type UpdateAddress struct {
-	Title   string    `json:"title"`
-	Content string    `json:"content"`
-	UserID  uuid.UUID `json:"UserId" gorm:"type:uuid"`
+	Title   string `json:"title"`
+	Content string `json:"content"`
+	UserID  string `json:"UserId" gorm:"type:uuid"`
 }

@@ -26,7 +26,10 @@ func Register(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	userID, _ := helper.GenerateByUUID()
+	userID, _ := helper.GenerateUserId(3)
+	profileId, _ := helper.GenerateProfileId(3)
+	accountId, _ := helper.GenerateAccountId(3)
+
 	roleMap := []schema.Role{}
 	for _, element := range data_roles {
 		roleMap = append(roleMap, schema.Role{Id: element.Id})
@@ -39,13 +42,42 @@ func Register(context *gin.Context) {
 		Username: input.Username,
 		Password: input.Password,
 	}
+
 	savedUser, err := user.Save()
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
+	profile := model.Profile{
+		Id:       profileId,
+		Username: input.Username,
+		Email:    input.Email,
+		UserId:   savedUser.Id,
+	}
+
+	savedProfile, err := profile.Save()
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	account := model.Account{
+		Id:            accountId,
+		UserId:        savedUser.Id,
+		ApplicationId: input.ApplicationId,
+	}
+
+	savedAccount, err := account.Save()
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
 	fmt.Println(savedUser)
+	fmt.Println(savedProfile)
+	fmt.Println(savedAccount)
 	context.JSON(http.StatusCreated, gin.H{"msg": "Registration is Completed"})
 }
 

@@ -1,0 +1,14 @@
+POST http://localhost:8000/api/application HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMxODg1NzgsImlkIjoiVVNSODQzMjM4MjAzNiJ9.GroY2uCKE2Dgaw-1a8_F3fNozKsJRqCUJn0Ed9laGnU
+
+{
+    "name":"Aplikasi Sales Visit",
+    "description":"Aplikasi Sales Visit",
+    "updated_note":"",
+    "version":"1",
+    "app_package":"com.android.salesvisit",
+    "app_package_class":"com.android.salesvisit.splash_screen",
+    "asset_apk":"",
+    "asset_icon":""
+}

@@ -3,6 +3,7 @@ content-type: application/json
 
 {
     "role":["Administrator"],
+    "application_id":"APP6342382035",
     "email":"fajarsoegi@gmail.com",
     "username": "fajarsoegi",
     "password": "fajarsoegi1901"
