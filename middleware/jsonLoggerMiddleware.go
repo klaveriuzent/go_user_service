@@ -28,7 +28,7 @@ func JSONLogMiddleware() gin.HandlerFunc {
 			"user_id":    util.GetUserID(c),
 			"referrer":   c.Request.Referer(),
 			"request_id": c.Param("ID"),
-			// "api_version": util.ApiVersion,
+			"body":       c.Request.Body,
 		})
 
 		if c.Writer.Status() >= 500 {

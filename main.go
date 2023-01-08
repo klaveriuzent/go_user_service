@@ -59,6 +59,7 @@ func loadDatabase() {
 	database.Database.AutoMigrate(&schema.Corporation{})
 	database.Database.AutoMigrate(&schema.AddressCorporation{})
 	database.Database.AutoMigrate(&schema.ProfileCorporations{})
+	database.Database.AutoMigrate(&schema.ActivityLog{})
 
 }
 
@@ -66,7 +67,7 @@ func serveApplication() {
 	gin.DisableConsoleColor()
 
 	// Logging to a file.
-	f, _ := os.Create("gin.log")
+	f, _ := os.Create("logger.log")
 
 	// Use the following code if you need to write the logs to file and console at the same time.
 	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
@@ -78,24 +79,24 @@ func serveApplication() {
 	publicRoutes.POST("/register", controller.Register)
 	publicRoutes.POST("/login", controller.Login)
 
-	protectedRoutes := router.Group("/api")
+	protectedRoutes := router.Group("/v1")
 	protectedRoutes.Use(middleware.JWTAuthMiddleware())
 	protectedRoutes.GET("/user/:ID", controller.UserGetProfiles)
 	protectedRoutes.POST("/user/:ID/assign_roles", controller.UserAssignRole)
 	protectedRoutes.POST("/user/:ID/assign_corporate", controller.UserAssignCorporation)
 	protectedRoutes.POST("/user/:ID/assign_role_app", controller.UserAssignRoleApplication)
-
 	//Application
 	protectedRoutes.POST("/application", controller.ApplicationAddNew)
-
 	//Corporation
 	protectedRoutes.POST("/corporation", controller.CorporationAddNew)
-
 	// Article
 	protectedRoutes.POST("/article", controller.ArticleAddNew)
 	protectedRoutes.GET("/article/:ID", controller.ArticleFindById)
 	protectedRoutes.GET("/article", controller.AllArticles)
 	protectedRoutes.PATCH("/article/:ID/edit", controller.ArticleUpdate)
+
+	protectedLogRoutes := router.Group("/log")
+	protectedLogRoutes.Use(middleware.JWTAuthMiddleware())
 
 	router.Run(":8000")
 	fmt.Println("Server running on port 8000")

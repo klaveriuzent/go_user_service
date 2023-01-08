@@ -1,4 +1,4 @@
-POST http://localhost:8000/api/user/USR8102382012/assign_role_app HTTP/1.1
+POST http://localhost:8000/v1/user/USR8102382012/assign_role_app HTTP/1.1
 content-type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMxODcyNzEsImlkIjoiVVNSODEwMjM4MjAxMiJ9.CyTKRdcWKHgtdd9RXoZ8NjNsnz0gacoLnAWRQYT8kqU
 
