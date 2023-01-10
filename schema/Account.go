@@ -26,3 +26,7 @@ func (Account) TableName() string {
 type AssignRoleApplication struct {
 	RoleApplication []string `json:"role_application"`
 }
+
+type UpdateAccount struct {
+	ApplicationId string `json:"application_id"`
+}

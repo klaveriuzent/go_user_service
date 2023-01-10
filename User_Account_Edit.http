@@ -1,0 +1,7 @@
+PATCH http://localhost:8000/v1/user/user_account/ACC6402382036/edit HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMyNzgzMzMsImlkIjoiVVNSODQzMjM4MjAzNiJ9.3dG3GDt8OXhZYgReDyj5RqhOiUlWE55FfPf93tayKv8
+
+{
+    "application_id": "APP2232382044"
+}

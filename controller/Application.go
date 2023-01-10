@@ -25,3 +25,26 @@ func ApplicationAddNew(context *gin.Context) {
 	}
 	context.JSON(http.StatusCreated, gin.H{"data": savedEntry})
 }
+func ApplicationUpdate(context *gin.Context) {
+	// Get model if exist
+	id := context.Param("ID")
+	data_entries, err := model.ApplicationFindById(id)
+	if err != nil {
+		context.JSON(http.StatusNotFound, gin.H{"error": "Record not found!"})
+		return
+	}
+
+	// Validate input
+	var input model.UpdateApplication
+	if err := context.ShouldBindJSON(&input); err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	updatedEntry, err := data_entries.ChangeData(id, input)
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	context.JSON(http.StatusOK, gin.H{"data": updatedEntry})
+}

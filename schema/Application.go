@@ -19,9 +19,9 @@ type Application struct {
 	CreatedAt       time.Time
 	UpdatedAt       time.Time
 	DeletedAt       gorm.DeletedAt
-	IsDeleted       bool       `gorm:"type:bool;default:false" json:"delete"`
-	IsActive        bool       `gorm:"type:bool;default:true" json:"status"`
-	Accounts        []*Account `gorm:"foreignKey:ApplicationId"`
+	IsDeleted       bool      `gorm:"type:bool;default:false" json:"delete"`
+	IsActive        bool      `gorm:"type:bool;default:true" json:"status"`
+	Accounts        []Account `gorm:"foreignKey:ApplicationId"`
 }
 
 func (Application) TableName() string {

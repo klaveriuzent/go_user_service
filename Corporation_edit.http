@@ -1,0 +1,13 @@
+PATCH  http://localhost:8000/v1/corporation/COM1172382035/edit HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMyNzM5NjEsImlkIjoiVVNSODQzMjM4MjAzNiJ9.TPrj0AfPqh87ANyNdnyM0J8zSViiJNDXUC73MHx5qqM
+
+{
+    "code": "3500",
+    "name": "PT. SALIM IVOMAS PRATAMA.tbk",
+    "description": "PERUSAHAAN AGRICULTURE",
+    "phone_number": "02102302193",
+    "fax": "0213982139821",
+    "sector": "Plantation",
+    "domain": "simp.co.id"
+}

@@ -85,10 +85,13 @@ func serveApplication() {
 	protectedRoutes.POST("/user/:ID/assign_roles", controller.UserAssignRole)
 	protectedRoutes.POST("/user/:ID/assign_corporate", controller.UserAssignCorporation)
 	protectedRoutes.POST("/user/:ID/assign_role_app", controller.UserAssignRoleApplication)
+	protectedRoutes.PATCH("/user/user_account/:ID/edit", controller.UserAccountUpdate)
 	//Application
 	protectedRoutes.POST("/application", controller.ApplicationAddNew)
+	protectedRoutes.PATCH("/application/:ID/edit", controller.ApplicationUpdate)
 	//Corporation
 	protectedRoutes.POST("/corporation", controller.CorporationAddNew)
+	protectedRoutes.PATCH("/corporation/:ID/edit", controller.CorporationUpdate)
 	// Article
 	protectedRoutes.POST("/article", controller.ArticleAddNew)
 	protectedRoutes.GET("/article/:ID", controller.ArticleFindById)

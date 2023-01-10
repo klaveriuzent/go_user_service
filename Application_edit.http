@@ -1,0 +1,14 @@
+PATCH  http://localhost:8000/v1/application/APP6342382035/edit HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMyNzM5NjEsImlkIjoiVVNSODQzMjM4MjAzNiJ9.TPrj0AfPqh87ANyNdnyM0J8zSViiJNDXUC73MHx5qqM
+
+{
+    "name": "Aplikasi Portal Android",
+    "description": "Description Aplikasi Android Portal",
+    "updated_note": "note",
+    "version": "vrsion 1",
+    "app_package": "package",
+    "app_package_class": "app package class",
+    "asset_apk": "asset apk",
+    "asset_icon": "asset icon"
+}

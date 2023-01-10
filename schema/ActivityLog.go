@@ -6,18 +6,18 @@ import (
 
 type ActivityLog struct {
 	Id          uint   `json:"id" gorm:"primaryKey;"`
-	Client      string `gorm:"size:100;" json:"params_client"`
-	Duration    string `gorm:"size:100;" json:"params_duration"`
-	Method      string `gorm:"size:100;" json:"params_method"`
-	Status      string `gorm:"size:100;" json:"params_status"`
-	Path        string `gorm:"size:100;" json:"params_path"`
-	ReqBody     string `gorm:"size:100;" json:"params_body"`
-	PathOp      string `gorm:"size:100;" json:"params_path_op"`
-	UserId      string `gorm:"size:100;" json:"params_user"`
-	Source      string `gorm:"size:100;" json:"params_source"`
-	Application string `gorm:"size:100;" json:"params_application"`
-	Referrer    string `gorm:"size:100;" json:"params_referrer"`
-	RequestId   string `gorm:"size:100;" json:"params_request_id"`
+	Client      string `gorm:"size:100;" json:"client"`
+	Duration    string `gorm:"size:100;" json:"duration"`
+	Method      string `gorm:"size:100;" json:"method"`
+	Status      string `gorm:"size:100;" json:"status"`
+	Path        string `gorm:"size:100;" json:"path"`
+	ReqBody     string `gorm:"size:100;" json:"body"`
+	PathOp      string `gorm:"size:100;" json:"path_op"`
+	UserId      string `gorm:"size:100;" json:"user"`
+	Source      string `gorm:"size:100;" json:"source"`
+	Application string `gorm:"size:100;" json:"application"`
+	Referrer    string `gorm:"size:100;" json:"referrer"`
+	RequestId   string `gorm:"size:100;" json:"request_id"`
 	CreatedAt   time.Time
 	User        User
 }

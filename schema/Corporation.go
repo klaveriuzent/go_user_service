@@ -27,3 +27,13 @@ type Corporation struct {
 func (Corporation) TableName() string {
 	return "corporations"
 }
+
+type UpdateCorporation struct {
+	Code        string `json:"code" `
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	PhoneNumber string `json:"phone_number"`
+	Fax         string `json:"fax"`
+	Sector      string `json:"sector"`
+	Domain      string `json:"domain"`
+}

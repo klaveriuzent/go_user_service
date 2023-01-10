@@ -7,6 +7,7 @@ import (
 )
 
 type Corporation schema.Corporation
+type UpdateCorporation schema.UpdateCorporation
 
 func (emp *Corporation) Save() (*Corporation, error) {
 	err := database.Database.Create(&emp).Error
@@ -49,4 +50,13 @@ func FindCorporationMapByName(params []string) ([]Corporation, error) {
 	err := database.Database.Where("name IN ?", params).Find(&corp).Error
 	fmt.Println(corp)
 	return corp, err
+}
+
+func (update_data *Corporation) ChangeData(id string, ua UpdateCorporation) (Corporation, error) {
+	err := database.Database.Model(&update_data).Where("id = ?", id).Updates(ua).Error
+	if err != nil {
+		return *update_data, err
+	}
+	res, _ := FindCorporateById(id)
+	return res, nil
 }

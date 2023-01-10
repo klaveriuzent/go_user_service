@@ -79,9 +79,6 @@ func ArticleUpdate(context *gin.Context) {
 		return
 	}
 
-	// ddt := model.Entry{Content: input.Content}
-	// database.Database.Model(&entryContent).Updates(ddt)
-
 	updatedEntry, err := data_entries.ChangeData(id, input)
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

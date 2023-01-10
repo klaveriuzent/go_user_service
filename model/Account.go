@@ -7,6 +7,7 @@ import (
 )
 
 type Account schema.Account
+type UpdateAccount schema.UpdateAccount
 
 func (emp *Account) Save() (*Account, error) {
 	err := database.Database.Create(&emp).Error
@@ -36,6 +37,15 @@ func (account *Account) AccountAssignRoleApplication(id string, corps []schema.R
 	err := database.Database.Model(&account).Association("RoleApplications").Replace(corps)
 	if err != nil {
 		return *account, err
+	}
+	res, _ := FindAccountById(id)
+	return res, nil
+}
+
+func (update_data *Account) ChangeData(id string, ua UpdateAccount) (Account, error) {
+	err := database.Database.Model(&update_data).Where("id = ?", id).Updates(ua).Error
+	if err != nil {
+		return *update_data, err
 	}
 	res, _ := FindAccountById(id)
 	return res, nil

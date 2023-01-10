@@ -40,7 +40,7 @@ func FindUserByUsername(username string) (User, error) {
 
 func FindUserById(id string) (User, error) {
 	var user User
-	err := database.Database.Preload("Accounts.Application").Preload("Accounts.RoleApplications").Preload("Profiles.Corporations").Preload(clause.Associations).Where("id = ?", id).Preload("Profiles", "is_active NOT IN (?)", false).First(&user).Error
+	err := database.Database.Preload("ActivityLogs").Preload("Accounts.Application").Preload("Accounts.RoleApplications").Preload("Profiles.Corporations").Preload(clause.Associations).Where("id = ?", id).Preload("Profiles", "is_active NOT IN (?)", false).First(&user).Error
 	return user, err
 }
 
