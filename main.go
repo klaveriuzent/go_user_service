@@ -15,6 +15,8 @@ import (
 	"github.com/joho/godotenv"
 )
 
+const port = ":8000"
+
 func main() {
 	loadEnv()
 	loadDatabase()
@@ -23,21 +25,22 @@ func main() {
 }
 
 func testGetDateTime() {
-	current_time := time.Now()
+	currentTime := time.Now()
 
 	// individual elements of time can
 	// also be called to print accordingly
 	fmt.Printf("%d-%02d-%02dT%02d:%02d:%02d-00:00\n",
-		current_time.Year(), current_time.Month(), current_time.Day(),
-		current_time.Hour(), current_time.Minute(), current_time.Second())
+		currentTime.Year(), currentTime.Month(), currentTime.Day(),
+		currentTime.Hour(), currentTime.Minute(), currentTime.Second())
 
 	// formatting time using
 	// custom formats
-	fmt.Println(current_time.Format("2006-01-02 15:04:05"))
-	fmt.Println(current_time.Format("2006-January-02"))
-	fmt.Println(current_time.Format("2006-01-02 3:4:5 pm"))
+	fmt.Println(currentTime.Format("2006-01-02 15:04:05"))
+	fmt.Println(currentTime.Format("2006-January-02"))
+	fmt.Println(currentTime.Format("2006-01-02 3:4:5 pm"))
 
 }
+
 func loadEnv() {
 	err := godotenv.Load(".env.local")
 	if err != nil {
@@ -47,20 +50,21 @@ func loadEnv() {
 
 func loadDatabase() {
 	database.Connect()
-	database.Database.AutoMigrate(&schema.Role{})
-	database.Database.AutoMigrate(&schema.User{})
-	database.Database.AutoMigrate(&schema.UserRole{})
-	database.Database.AutoMigrate(&schema.Profile{})
-	database.Database.AutoMigrate(&schema.Application{})
-	database.Database.AutoMigrate(&schema.RoleApplication{})
-	database.Database.AutoMigrate(&schema.Account{})
-	database.Database.AutoMigrate(&schema.Article{})
-	database.Database.AutoMigrate(&schema.Address{})
-	database.Database.AutoMigrate(&schema.Corporation{})
-	database.Database.AutoMigrate(&schema.AddressCorporation{})
-	database.Database.AutoMigrate(&schema.ProfileCorporations{})
-	database.Database.AutoMigrate(&schema.ActivityLog{})
-
+	database.Database.AutoMigrate(
+		&schema.Role{},
+		&schema.User{},
+		&schema.UserRole{},
+		&schema.Profile{},
+		&schema.Application{},
+		&schema.RoleApplication{},
+		&schema.Account{},
+		&schema.Article{},
+		&schema.Address{},
+		&schema.Corporation{},
+		&schema.AddressCorporation{},
+		&schema.ProfileCorporations{},
+		&schema.ActivityLog{},
+	)
 }
 
 func serveApplication() {
@@ -68,13 +72,13 @@ func serveApplication() {
 
 	// Logging to a file.
 	f, _ := os.Create("logger.log")
-
 	// Use the following code if you need to write the logs to file and console at the same time.
 	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 
 	router := gin.Default()
 	router.Use(gin.Recovery())
 	router.Use(middleware.JSONLogMiddleware())
+
 	publicRoutes := router.Group("/auth")
 	publicRoutes.POST("/register", controller.Register)
 	publicRoutes.POST("/login", controller.Login)
@@ -101,6 +105,7 @@ func serveApplication() {
 	protectedLogRoutes := router.Group("/log")
 	protectedLogRoutes.Use(middleware.JWTAuthMiddleware())
 
-	router.Run(":8000")
-	fmt.Println("Server running on port 8000")
+	if err := router.Run(port); err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
 }
