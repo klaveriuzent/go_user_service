@@ -11,8 +11,6 @@
 [GIN-debug] POST   /v1/user/:ID/assign_corporate --> userservice/controller.UserAssignCorporation (6 handlers)
 [GIN-debug] POST   /v1/user/:ID/assign_role_app --> userservice/controller.UserAssignRoleApplication (6 handlers)
 [GIN-debug] PATCH  /v1/user/user_account/:ID/edit --> userservice/controller.UserAccountUpdate (6 handlers)
-[GIN-debug] POST   /v1/application           --> userservice/controller.ApplicationAddNew (6 handlers)
-[GIN-debug] PATCH  /v1/application/:ID/edit  --> userservice/controller.ApplicationUpdate (6 handlers)
 [GIN-debug] POST   /v1/corporation           --> userservice/controller.CorporationAddNew (6 handlers)
 [GIN-debug] PATCH  /v1/corporation/:ID/edit  --> userservice/controller.CorporationUpdate (6 handlers)
 [GIN-debug] POST   /v1/article               --> userservice/controller.ArticleAddNew (6 handlers)
@@ -22,9 +20,3 @@
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8000
-[GIN] 2023/01/09 - 21:31:42 | 401 |    138.6604ms |       127.0.0.1 | PATCH    "/v1/user/user_account/USR8432382036/edit"
-[GIN] 2023/01/09 - 21:32:05 | 401 |     119.475ms |       127.0.0.1 | PATCH    "/v1/user/user_account/USR8432382036/edit"
-[GIN] 2023/01/09 - 21:32:13 | 200 |    267.3644ms |       127.0.0.1 | POST     "/auth/login"
-[GIN] 2023/01/09 - 21:32:26 | 404 |    172.1128ms |       127.0.0.1 | PATCH    "/v1/user/user_account/USR8432382036/edit"
-[GIN] 2023/01/09 - 21:32:42 | 200 |    154.3783ms |       127.0.0.1 | PATCH    "/v1/user/user_account/ACC6402382036/edit"
-[GIN] 2023/01/09 - 21:33:05 | 200 |    167.8457ms |       127.0.0.1 | PATCH    "/v1/user/user_account/ACC6402382036/edit"
