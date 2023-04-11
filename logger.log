@@ -13,10 +13,6 @@
 [GIN-debug] PATCH  /v1/user/user_account/:ID/edit --> userservice/controller.UserAccountUpdate (6 handlers)
 [GIN-debug] POST   /v1/corporation           --> userservice/controller.CorporationAddNew (6 handlers)
 [GIN-debug] PATCH  /v1/corporation/:ID/edit  --> userservice/controller.CorporationUpdate (6 handlers)
-[GIN-debug] POST   /v1/article               --> userservice/controller.ArticleAddNew (6 handlers)
-[GIN-debug] GET    /v1/article/:ID           --> userservice/controller.ArticleFindById (6 handlers)
-[GIN-debug] GET    /v1/article               --> userservice/controller.AllArticles (6 handlers)
-[GIN-debug] PATCH  /v1/article/:ID/edit      --> userservice/controller.ArticleUpdate (6 handlers)
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8000

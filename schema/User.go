@@ -19,7 +19,6 @@ type User struct {
 	Roles        []Role        `gorm:"many2many:user_roles;"`
 	Profiles     []Profile     `gorm:"foreignKey:UserId"`
 	Accounts     []Account     `gorm:"foreignKey:UserId"`
-	Articles     []Article     `gorm:"foreignKey:UserId"`
 	ActivityLogs []ActivityLog `gorm:"foreignKey:UserId"`
 }
 
