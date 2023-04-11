@@ -16,7 +16,6 @@ type Account struct {
 	IsDeleted        bool              `gorm:"type:bool;default:false" json:"delete"`
 	IsActive         bool              `gorm:"type:bool;default:true" json:"status"`
 	RoleApplications []RoleApplication `gorm:"many2many:account_role_applications;"`
-	Application      Application
 }
 
 func (Account) TableName() string {
