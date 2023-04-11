@@ -92,11 +92,6 @@ func serveApplication() {
 	//Corporation
 	protectedRoutes.POST("/corporation", controller.CorporationAddNew)
 	protectedRoutes.PATCH("/corporation/:ID/edit", controller.CorporationUpdate)
-	// Article
-	protectedRoutes.POST("/article", controller.ArticleAddNew)
-	protectedRoutes.GET("/article/:ID", controller.ArticleFindById)
-	protectedRoutes.GET("/article", controller.AllArticles)
-	protectedRoutes.PATCH("/article/:ID/edit", controller.ArticleUpdate)
 
 	protectedLogRoutes := router.Group("/log")
 	protectedLogRoutes.Use(middleware.JWTAuthMiddleware())
