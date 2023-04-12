@@ -58,7 +58,6 @@ func loadDatabase() {
 		&schema.RoleApplication{},
 		&schema.Account{},
 		&schema.Address{},
-		&schema.ProfileCorporations{},
 		&schema.ActivityLog{},
 	)
 }
