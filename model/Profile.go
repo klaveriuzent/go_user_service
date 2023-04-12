@@ -43,12 +43,3 @@ func FindProfileByEmail(id string) (Profile, error) {
 	err := database.Database.Where("email=?", id).First(&emp).Error
 	return emp, err
 }
-
-func (profile *Profile) ProfileAssignCorporation(id string, corps []schema.Corporation) (Profile, error) {
-	err := database.Database.Model(&profile).Association("Corporations").Replace(corps)
-	if err != nil {
-		return *profile, err
-	}
-	res, _ := FindProfileById(id)
-	return res, nil
-}

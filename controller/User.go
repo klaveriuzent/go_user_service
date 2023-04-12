@@ -51,43 +51,6 @@ func UserGetProfiles(context *gin.Context) { // Get model if exist
 	context.JSON(http.StatusOK, gin.H{"data": user})
 }
 
-func UserAssignCorporation(context *gin.Context) { // Get model if exist
-	id := context.Param("ID")
-	var input schema.AssignCorporation
-
-	if err := context.ShouldBindJSON(&input); err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	input_corporation := input.Corporation
-	data_roles, err := model.FindCorporationMapById(input_corporation)
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	corpMap := []schema.Corporation{}
-	for _, element := range data_roles {
-		corpMap = append(corpMap, schema.Corporation{Id: element.Id})
-	}
-	profiles, err := model.FindProfileByUserId(id)
-	if err != nil {
-		context.JSON(http.StatusNotFound, gin.H{"msg": "User Not Found"})
-		return
-	}
-	updateCorporations, err := profiles.ProfileAssignCorporation(profiles.Id, corpMap)
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	users, err := model.FindUserById(updateCorporations.UserId)
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	context.JSON(http.StatusCreated, gin.H{"user": users})
-}
-
 func UserAssignRoleApplication(context *gin.Context) { // Get model if exist
 	id := context.Param("ID")
 	var input schema.AssignRoleApplication
