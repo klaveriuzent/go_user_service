@@ -82,17 +82,6 @@ func GenerateAccountId(length int) (string, error) {
 	return generate, nil
 }
 
-func GenerateCorporationId(length int) (string, error) {
-	prefix := "COM"
-	genNumber, _ := GenerateRandomSecureToken(3)
-	genYear, _ := getYear()
-	genTime, _ := getTime()
-	getDay, _ := getDate()
-	unique_number := strconv.Itoa(genNumber)
-	unique_year := strconv.Itoa(genYear)
-	generate := prefix + unique_number + unique_year + getDay + genTime
-	return generate, nil
-}
 func GenerateByUUID() (string, error) {
 	generateUUID := (uuid.New()).String()
 	return generateUUID, nil

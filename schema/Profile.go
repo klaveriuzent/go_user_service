@@ -33,7 +33,3 @@ type Profile struct {
 func (Profile) TableName() string {
 	return "profiles"
 }
-
-type AssignCorporation struct {
-	Corporation []string `json:"corporation"`
-}
