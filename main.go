@@ -58,7 +58,6 @@ func loadDatabase() {
 		&schema.RoleApplication{},
 		&schema.Account{},
 		&schema.Address{},
-		&schema.Corporation{},
 		&schema.ProfileCorporations{},
 		&schema.ActivityLog{},
 	)
@@ -84,12 +83,8 @@ func serveApplication() {
 	protectedRoutes.Use(middleware.JWTAuthMiddleware())
 	protectedRoutes.GET("/user/:ID", controller.UserGetProfiles)
 	protectedRoutes.POST("/user/:ID/assign_roles", controller.UserAssignRole)
-	protectedRoutes.POST("/user/:ID/assign_corporate", controller.UserAssignCorporation)
 	protectedRoutes.POST("/user/:ID/assign_role_app", controller.UserAssignRoleApplication)
 	protectedRoutes.PATCH("/user/user_account/:ID/edit", controller.UserAccountUpdate)
-	//Corporation
-	protectedRoutes.POST("/corporation", controller.CorporationAddNew)
-	protectedRoutes.PATCH("/corporation/:ID/edit", controller.CorporationUpdate)
 
 	protectedLogRoutes := router.Group("/log")
 	protectedLogRoutes.Use(middleware.JWTAuthMiddleware())
