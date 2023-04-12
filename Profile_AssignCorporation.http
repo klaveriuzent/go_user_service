@@ -1,7 +1,0 @@
-POST http://localhost:8000/v1/user/USR8432382036/assign_corporate HTTP/1.1
-content-type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMxODg1NzgsImlkIjoiVVNSODQzMjM4MjAzNiJ9.GroY2uCKE2Dgaw-1a8_F3fNozKsJRqCUJn0Ed9laGnU
-
-{
-    "corporation":["COM1172382035"]
-}
