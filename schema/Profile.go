@@ -25,10 +25,9 @@ type Profile struct {
 	CreatedAt    time.Time
 	UpdatedAt    time.Time
 	DeletedAt    gorm.DeletedAt
-	UserId       string        `json:"user_id"`
-	Deleted      bool          `gorm:"type:bool;default:false" json:"delete"`
-	IsActive     bool          `gorm:"type:bool;default:true" json:"status"`
-	Corporations []Corporation `gorm:"many2many:profile_corporations;"`
+	UserId       string `json:"user_id"`
+	Deleted      bool   `gorm:"type:bool;default:false" json:"delete"`
+	IsActive     bool   `gorm:"type:bool;default:true" json:"status"`
 }
 
 func (Profile) TableName() string {
