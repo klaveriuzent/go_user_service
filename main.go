@@ -66,7 +66,7 @@ func serveApplication() {
 	gin.DisableConsoleColor()
 
 	// Logging to a file.
-	f, _ := os.Create("logger.log")
+	f, _ := os.Create("./logger.log")
 	// Use the following code if you need to write the logs to file and console at the same time.
 	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 
