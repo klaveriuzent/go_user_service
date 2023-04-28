@@ -17,6 +17,7 @@ import (
 
 const port = ":8000"
 
+// Load all func
 func main() {
 	loadEnv()
 	loadDatabase()
@@ -24,23 +25,23 @@ func main() {
 	testGetDateTime()
 }
 
+// Test the Go time package by printing the current date and time in various formats
 func testGetDateTime() {
 	currentTime := time.Now()
 
-	// individual elements of time can
-	// also be called to print accordingly
+	// Print the individual elements of the current time
 	fmt.Printf("%d-%02d-%02dT%02d:%02d:%02d-00:00\n",
 		currentTime.Year(), currentTime.Month(), currentTime.Day(),
 		currentTime.Hour(), currentTime.Minute(), currentTime.Second())
 
-	// formatting time using
-	// custom formats
+	// Print the current time in custom formats
 	fmt.Println(currentTime.Format("2006-01-02 15:04:05"))
 	fmt.Println(currentTime.Format("2006-January-02"))
 	fmt.Println(currentTime.Format("2006-01-02 3:4:5 pm"))
 
 }
 
+// Load environment variables from .env.local file
 func loadEnv() {
 	err := godotenv.Load(".env.local")
 	if err != nil {
@@ -48,6 +49,7 @@ func loadEnv() {
 	}
 }
 
+// Connect to the database and perform auto-migration
 func loadDatabase() {
 	database.Connect()
 	database.Database.AutoMigrate(
@@ -62,22 +64,25 @@ func loadDatabase() {
 	)
 }
 
+// Start the application server using Gin framework
 func serveApplication() {
-	gin.DisableConsoleColor()
+	gin.DisableConsoleColor() // Disable console color for logging
 
-	// Logging to a file.
+	// Create a log file for logging
 	f, _ := os.Create("./logger.log")
 	// Use the following code if you need to write the logs to file and console at the same time.
 	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 
-	router := gin.Default()
-	router.Use(gin.Recovery())
-	router.Use(middleware.JSONLogMiddleware())
+	router := gin.Default()                    // Create a new Gin router
+	router.Use(gin.Recovery())                 // Use Gin recovery middleware to recover from any panics
+	router.Use(middleware.JSONLogMiddleware()) // Use custom middleware to log requests and responses in JSON format
 
+	// Define public routes for authentication
 	publicRoutes := router.Group("/auth")
 	publicRoutes.POST("/register", controller.Register)
 	publicRoutes.POST("/login", controller.Login)
 
+	// Define protected routes for authorized users
 	protectedRoutes := router.Group("/v1")
 	protectedRoutes.Use(middleware.JWTAuthMiddleware())
 	protectedRoutes.GET("/user/:ID", controller.UserGetProfiles)
@@ -85,6 +90,7 @@ func serveApplication() {
 	protectedRoutes.POST("/user/:ID/assign_role_app", controller.UserAssignRoleApplication)
 	protectedRoutes.PATCH("/user/user_account/:ID/edit", controller.UserAccountUpdate)
 
+	// Start the server and log any errors
 	if err := router.Run(port); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
