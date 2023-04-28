@@ -85,9 +85,6 @@ func serveApplication() {
 	protectedRoutes.POST("/user/:ID/assign_role_app", controller.UserAssignRoleApplication)
 	protectedRoutes.PATCH("/user/user_account/:ID/edit", controller.UserAccountUpdate)
 
-	protectedLogRoutes := router.Group("/log")
-	protectedLogRoutes.Use(middleware.JWTAuthMiddleware())
-
 	if err := router.Run(port); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
