@@ -8,6 +8,7 @@ import (
 	"time"
 	"userservice/controller"
 	"userservice/database"
+	_ "userservice/docs"
 	"userservice/middleware"
 	"userservice/schema"
 
