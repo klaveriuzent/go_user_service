@@ -1,0 +1,51 @@
+definitions:
+  schema.Register:
+    properties:
+      application_id:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      role:
+        items:
+          type: string
+        type: array
+      username:
+        type: string
+    required:
+    - email
+    - password
+    - role
+    - username
+    type: object
+info:
+  contact: {}
+paths:
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Register a new user with the given credentials
+      parameters:
+      - description: Registration details
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/schema.Register'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Registration is Completed
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Register a new user
+      tags:
+      - Authentication
+swagger: "2.0"

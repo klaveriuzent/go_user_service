@@ -10,28 +10,36 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type RegisterSchema schema.Register
-type LoginSchema schema.Login
-
+// @Summary Register a new user
+// @Tags Authentication
+// @Description Register a new user with the given credentials
+// @Accept json
+// @Produce json
+// @Param input body schema.Register true "Registration details"
+// @Success 201 {string} string "Registration is Completed"
+// @Failure 400 {string} string "Bad Request"
+// @Router /auth/register [post]
 func Register(context *gin.Context) {
-	var input RegisterSchema
+	var input schema.Register
 
 	if err := context.ShouldBindJSON(&input); err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	input_roles := input.Role
-	data_roles, err := model.FindRoleMapByName(input_roles)
+
+	inputRoles := input.Role
+	dataRoles, err := model.FindRoleMapByName(inputRoles)
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
 	userID, _ := helper.GenerateUserId(3)
-	profileId, _ := helper.GenerateProfileId(3)
-	accountId, _ := helper.GenerateAccountId(3)
+	profileID, _ := helper.GenerateProfileId(3)
+	accountID, _ := helper.GenerateAccountId(3)
 
 	roleMap := []schema.Role{}
-	for _, element := range data_roles {
+	for _, element := range dataRoles {
 		roleMap = append(roleMap, schema.Role{Id: element.Id})
 	}
 
@@ -44,14 +52,13 @@ func Register(context *gin.Context) {
 	}
 
 	savedUser, err := user.Save()
-
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	profile := model.Profile{
-		Id:       profileId,
+		Id:       profileID,
 		Username: input.Username,
 		Email:    input.Email,
 		UserId:   savedUser.Id,
@@ -64,7 +71,7 @@ func Register(context *gin.Context) {
 	}
 
 	account := model.Account{
-		Id:            accountId,
+		Id:            accountID,
 		UserId:        savedUser.Id,
 		ApplicationId: input.ApplicationId,
 	}
@@ -78,25 +85,25 @@ func Register(context *gin.Context) {
 	fmt.Println(savedUser)
 	fmt.Println(savedProfile)
 	fmt.Println(savedAccount)
+
 	context.JSON(http.StatusCreated, gin.H{"msg": "Registration is Completed"})
 }
 
 func Login(context *gin.Context) {
-	var input LoginSchema
+	var input schema.Login
 
 	if err := context.ShouldBindJSON(&input); err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
 	user, err := model.FindUserByUsername(input.Username)
-	fmt.Println(&user, err)
 	if err != nil {
 		context.JSON(http.StatusNotFound, gin.H{"msg": "User Not Found"})
 		return
 	}
 
 	err = user.ValidatePassword(input.Password)
-
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"msg": "Wrong Password"})
 		return

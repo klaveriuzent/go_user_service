@@ -13,6 +13,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 const port = ":8000"
@@ -89,6 +91,9 @@ func serveApplication() {
 	protectedRoutes.POST("/user/:ID/assign_roles", controller.UserAssignRole)
 	protectedRoutes.POST("/user/:ID/assign_role_app", controller.UserAssignRoleApplication)
 	protectedRoutes.PATCH("/user/user_account/:ID/edit", controller.UserAccountUpdate)
+
+	// Serve Swagger UI
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	// Start the server and log any errors
 	if err := router.Run(port); err != nil {
