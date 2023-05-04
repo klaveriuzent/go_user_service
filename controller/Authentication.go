@@ -89,6 +89,17 @@ func Register(context *gin.Context) {
 	context.JSON(http.StatusCreated, gin.H{"msg": "Registration is Completed"})
 }
 
+// @Summary Login with existing user credentials
+// @Tags Authentication
+// @Description with the given credentials
+// @Accept json
+// @Produce json
+// @Param input body schema.Login true "Login details"
+// @Success 200 {string} string "Login Successful"
+// @Failure 400 {string} string "Bad Request"
+// @Failure 404 {string} string "User Not Found"
+// @Failure 401 {string} string "Wrong Password"
+// @Router /auth/login [post]
 func Login(context *gin.Context) {
 	var input schema.Login
 

@@ -1,4 +1,30 @@
 definitions:
+  schema.AssignRole:
+    properties:
+      role:
+        items:
+          type: string
+        type: array
+    type: object
+  schema.AssignRoleApplication:
+    properties:
+      role_application:
+        items:
+          type: string
+        type: array
+    type: object
+  schema.Login:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  schema.Profile:
+    type: object
   schema.Register:
     properties:
       application_id:
@@ -19,9 +45,48 @@ definitions:
     - role
     - username
     type: object
+  schema.UpdateAccount:
+    properties:
+      application_id:
+        type: string
+    type: object
 info:
   contact: {}
 paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: with the given credentials
+      parameters:
+      - description: Login details
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/schema.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Login Successful
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Wrong Password
+          schema:
+            type: string
+        "404":
+          description: User Not Found
+          schema:
+            type: string
+      summary: Login with existing user credentials
+      tags:
+      - Authentication
   /auth/register:
     post:
       consumes:
@@ -48,4 +113,161 @@ paths:
       summary: Register a new user
       tags:
       - Authentication
+  /users/{ID}/account:
+    put:
+      consumes:
+      - application/json
+      description: Update user's account information with the given ID
+      parameters:
+      - description: User ID
+        in: path
+        name: ID
+        required: true
+        type: string
+      - description: Account details
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/schema.UpdateAccount'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User's account information updated
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Record not found
+          schema:
+            type: string
+      summary: Update user's account information
+      tags:
+      - User Management
+  /users/{ID}/assign-role:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: User ID
+        in: path
+        name: ID
+        required: true
+        type: string
+      - description: Role details
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/schema.AssignRole'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Role assigned to user
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: User Not Found
+          schema:
+            type: string
+      summary: Assign role to a user
+      tags:
+      - User Management
+  /users/{ID}/assign-role-application:
+    post:
+      consumes:
+      - application/json
+      description: Assign role application to a user's account with the given ID
+      parameters:
+      - description: User ID
+        in: path
+        name: ID
+        required: true
+        type: string
+      - description: Role Application details
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/schema.AssignRoleApplication'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Role Application assigned to user's account
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: User Not Found
+          schema:
+            type: string
+      summary: Assign role application to a user's account
+      tags:
+      - User Management
+  /users/{ID}/profiles:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: User ID
+        in: path
+        name: ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Profiles of user retrieved
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Record not found
+          schema:
+            type: string
+      tags:
+      - User Management
+  /users/profiles:
+    post:
+      consumes:
+      - application/json
+      description: Add new profile for a user
+      parameters:
+      - description: Profile details
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/schema.Profile'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: New profile added for user
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Add new profile for a user
+      tags:
+      - User Management
 swagger: "2.0"

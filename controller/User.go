@@ -9,6 +9,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary Assign role to a user
+// @Tags User Management
+// @ Assign role to a user with the given ID
+// @Accept json
+// @Produce json
+// @Param ID path string true "User ID"
+// @Param input body schema.AssignRole true "Role details"
+// @Success 201 {string} string "Role assigned to user"
+// @Failure 400 {string} string "Bad Request"
+// @Failure 404 {string} string "User Not Found"
+// @Router /users/{ID}/assign-role [post]
 func UserAssignRole(context *gin.Context) {
 	id := context.Param("ID")
 	var input schema.AssignRole
@@ -41,6 +52,16 @@ func UserAssignRole(context *gin.Context) {
 	context.JSON(http.StatusCreated, gin.H{"user": updateRoles})
 }
 
+// Summary Get profiles of a user
+// @Tags User Management
+// Description Get profiles of a user with the given ID
+// @Accept json
+// @Produce json
+// @Param ID path string true "User ID"
+// @Success 200 {string} string "Profiles of user retrieved"
+// @Failure 400 {string} string "Bad Request"
+// @Failure 404 {string} string "Record not found"
+// @Router /users/{ID}/profiles [get]
 func UserGetProfiles(context *gin.Context) { // Get model if exist
 	id := context.Param("ID")
 	user, err := model.FindUserById(id)
@@ -51,6 +72,17 @@ func UserGetProfiles(context *gin.Context) { // Get model if exist
 	context.JSON(http.StatusOK, gin.H{"data": user})
 }
 
+// @Summary Assign role application to a user's account
+// @Tags User Management
+// @Description Assign role application to a user's account with the given ID
+// @Accept json
+// @Produce json
+// @Param ID path string true "User ID"
+// @Param input body schema.AssignRoleApplication true "Role Application details"
+// @Success 201 {string} string "Role Application assigned to user's account"
+// @Failure 400 {string} string "Bad Request"
+// @Failure 404 {string} string "User Not Found"
+// @Router /users/{ID}/assign-role-application [post]
 func UserAssignRoleApplication(context *gin.Context) { // Get model if exist
 	id := context.Param("ID")
 	var input schema.AssignRoleApplication
@@ -88,6 +120,17 @@ func UserAssignRoleApplication(context *gin.Context) { // Get model if exist
 	context.JSON(http.StatusCreated, gin.H{"user": users})
 }
 
+// @Summary Update user's account information
+// @Tags User Management
+// @Description Update user's account information with the given ID
+// @Accept json
+// @Produce json
+// @Param ID path string true "User ID"
+// @Param input body schema.UpdateAccount true "Account details"
+// @Success 200 {string} string "User's account information updated"
+// @Failure 400 {string} string "Bad Request"
+// @Failure 404 {string} string "Record not found"
+// @Router /users/{ID}/account [put]
 func UserAccountUpdate(context *gin.Context) {
 	// Get model if exist
 	id := context.Param("ID")
@@ -112,6 +155,15 @@ func UserAccountUpdate(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{"data": updatedEntry})
 }
 
+// @Summary Add new profile for a user
+// @Tags User Management
+// @Description Add new profile for a user
+// @Accept json
+// @Produce json
+// @Param input body schema.Profile true "Profile details"
+// @Success 201 {string} string "New profile added for user"
+// @Failure 400 {string} string "Bad Request"
+// @Router /users/profiles [post]
 func UserProfileAddNew(context *gin.Context) {
 	var input model.Profile
 	if err := context.ShouldBindJSON(&input); err != nil {
