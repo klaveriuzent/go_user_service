@@ -60,10 +60,8 @@ func loadDatabase() {
 		&schema.User{},
 		&schema.UserRole{},
 		&schema.Profile{},
-		&schema.RoleApplication{},
 		&schema.Account{},
 		&schema.Address{},
-		&schema.ActivityLog{},
 	)
 }
 
@@ -76,9 +74,8 @@ func serveApplication() {
 	// Use the following code if you need to write the logs to file and console at the same time.
 	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 
-	router := gin.Default()                    // Create a new Gin router
-	router.Use(gin.Recovery())                 // Use Gin recovery middleware to recover from any panics
-	router.Use(middleware.JSONLogMiddleware()) // Use custom middleware to log requests and responses in JSON format
+	router := gin.Default()    // Create a new Gin router
+	router.Use(gin.Recovery()) // Use Gin recovery middleware to recover from any panics
 
 	// Define public routes for authentication
 	publicRoutes := router.Group("/auth")
@@ -89,9 +86,6 @@ func serveApplication() {
 	protectedRoutes := router.Group("/v1")
 	protectedRoutes.Use(middleware.JWTAuthMiddleware())
 	protectedRoutes.GET("/user/:ID", controller.UserGetProfiles)
-	protectedRoutes.POST("/user/:ID/assign_roles", controller.UserAssignRole)
-	protectedRoutes.POST("/user/:ID/assign_role_app", controller.UserAssignRoleApplication)
-	protectedRoutes.PATCH("/user/user_account/:ID/edit", controller.UserAccountUpdate)
 
 	// Serve Swagger UI
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))

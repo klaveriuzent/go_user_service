@@ -4,13 +4,10 @@
  - using env:	export GIN_MODE=release
  - using code:	gin.SetMode(gin.ReleaseMode)
 
-[GIN-debug] POST   /auth/register            --> userservice/controller.Register (5 handlers)
-[GIN-debug] POST   /auth/login               --> userservice/controller.Login (5 handlers)
-[GIN-debug] GET    /v1/user/:ID              --> userservice/controller.UserGetProfiles (6 handlers)
-[GIN-debug] POST   /v1/user/:ID/assign_roles --> userservice/controller.UserAssignRole (6 handlers)
-[GIN-debug] POST   /v1/user/:ID/assign_role_app --> userservice/controller.UserAssignRoleApplication (6 handlers)
-[GIN-debug] PATCH  /v1/user/user_account/:ID/edit --> userservice/controller.UserAccountUpdate (6 handlers)
-[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (5 handlers)
+[GIN-debug] POST   /auth/register            --> userservice/controller.Register (4 handlers)
+[GIN-debug] POST   /auth/login               --> userservice/controller.Login (4 handlers)
+[GIN-debug] GET    /v1/user/:ID              --> userservice/controller.UserGetProfiles (5 handlers)
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8000

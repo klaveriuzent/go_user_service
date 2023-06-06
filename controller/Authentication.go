@@ -71,9 +71,8 @@ func Register(context *gin.Context) {
 	}
 
 	account := model.Account{
-		Id:            accountID,
-		UserId:        savedUser.Id,
-		ApplicationId: input.ApplicationId,
+		Id:     accountID,
+		UserId: savedUser.Id,
 	}
 
 	savedAccount, err := account.Save()
