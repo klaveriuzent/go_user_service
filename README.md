@@ -29,7 +29,7 @@ http://localhost:8000/swagger/index.html#/
 and you can use Swagger to test the API endpoints.
 
 ## Database Management
-To manage the database, you can use a database management tool such as DBeaver. Connect to the PostgreSQL database using the connection details specified in the `.env.local` file (other option use `.env`). Once connected, you can create tables, insert data, and perform other database operations as needed.
+To manage the database, you can use a database management tool such as DBeaver. Connect to the PostgreSQL database using the connection details specified in the `.env.local` file (other option you can use `.env` with edit `main.go`). Once connected, you can create tables, insert data, and perform other database operations as needed.
 
 ## Contributing
 If you would like to contribute to this project, please fork the repository and submit a pull request. We welcome contributions of all kinds, including bug fixes, feature additions, and documentation improvements.
