@@ -1,7 +1,0 @@
-POST http://localhost:8000/v1/user/USR8102382012/assign_role_app HTTP/1.1
-content-type: application/json
-Authorization: bearer <INSERT_TOKEN>
-
-{
-    "role_application":["Administrator"]
-}

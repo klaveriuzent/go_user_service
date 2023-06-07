@@ -1,3 +1,0 @@
-GET http://localhost:8000/v1/user/USR8432382036 HTTP/1.1
-content-type: application/json
-Authorization: bearer <INSERT_TOKEN>

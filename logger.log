@@ -6,7 +6,6 @@
 
 [GIN-debug] POST   /auth/register            --> userservice/controller.Register (4 handlers)
 [GIN-debug] POST   /auth/login               --> userservice/controller.Login (4 handlers)
-[GIN-debug] GET    /v1/user/:ID              --> userservice/controller.UserGetProfiles (5 handlers)
 [GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.

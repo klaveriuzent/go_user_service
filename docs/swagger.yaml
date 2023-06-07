@@ -15,16 +15,11 @@ definitions:
         type: string
       password:
         type: string
-      role:
-        items:
-          type: string
-        type: array
       username:
         type: string
     required:
     - email
     - password
-    - role
     - username
     type: object
 info:
@@ -90,31 +85,4 @@ paths:
       summary: Register a new user
       tags:
       - Authentication
-  /users/{ID}/profiles:
-    get:
-      consumes:
-      - application/json
-      parameters:
-      - description: User ID
-        in: path
-        name: ID
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: Profiles of user retrieved
-          schema:
-            type: string
-        "400":
-          description: Bad Request
-          schema:
-            type: string
-        "404":
-          description: Record not found
-          schema:
-            type: string
-      tags:
-      - User Management
 swagger: "2.0"

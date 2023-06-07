@@ -2,8 +2,6 @@ POST http://localhost:8000/auth/register HTTP/1.1
 content-type: application/json
 
 {
-    "role":["Administratorasd"],
-    "application_id":"APP3879524866",
     "email":"example@email.com",
     "username": "sampleusername",
     "password": "samplepassword"

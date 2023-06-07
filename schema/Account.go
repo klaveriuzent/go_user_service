@@ -19,7 +19,3 @@ type Account struct {
 func (Account) TableName() string {
 	return "accounts"
 }
-
-type AssignRoleApplication struct {
-	RoleApplication []string `json:"role_application"`
-}

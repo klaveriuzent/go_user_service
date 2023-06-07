@@ -16,14 +16,9 @@ type User struct {
 	DeletedAt gorm.DeletedAt
 	IsDeleted bool      `gorm:"type:bool;default:false" json:"delete"`
 	IsActive  bool      `gorm:"type:bool;default:true" json:"status"`
-	Profiles  []Profile `gorm:"foreignKey:UserId"`
 	Accounts  []Account `gorm:"foreignKey:UserId"`
 }
 
 func (User) TableName() string {
 	return "users"
-}
-
-type AssignRole struct {
-	Role []string `json:"role"`
 }

@@ -57,7 +57,6 @@ func loadDatabase() {
 	database.Connect()
 	database.Database.AutoMigrate(
 		&schema.User{},
-		&schema.Profile{},
 		&schema.Account{},
 	)
 }
@@ -82,7 +81,6 @@ func serveApplication() {
 	// Define protected routes for authorized users
 	protectedRoutes := router.Group("/v1")
 	protectedRoutes.Use(middleware.JWTAuthMiddleware())
-	protectedRoutes.GET("/user/:ID", controller.UserGetProfiles)
 
 	// Serve Swagger UI
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))

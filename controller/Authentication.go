@@ -28,7 +28,6 @@ func Register(context *gin.Context) {
 	}
 
 	userID, _ := helper.GenerateUserId(3)
-	profileID, _ := helper.GenerateProfileId(3)
 	accountID, _ := helper.GenerateAccountId(3)
 
 	user := model.User{
@@ -39,19 +38,6 @@ func Register(context *gin.Context) {
 	}
 
 	savedUser, err := user.Save()
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	profile := model.Profile{
-		Id:       profileID,
-		Username: input.Username,
-		Email:    input.Email,
-		UserId:   savedUser.Id,
-	}
-
-	savedProfile, err := profile.Save()
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -69,7 +55,6 @@ func Register(context *gin.Context) {
 	}
 
 	fmt.Println(savedUser)
-	fmt.Println(savedProfile)
 	fmt.Println(savedAccount)
 
 	context.JSON(http.StatusCreated, gin.H{"msg": "Registration is Completed"})

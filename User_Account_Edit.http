@@ -1,7 +1,0 @@
-PATCH http://localhost:8000/v1/user/user_account/ACC6402382036/edit HTTP/1.1
-content-type: application/json
-Authorization: bearer <INSERT_TOKEN>
-
-{
-    "application_id": "APP3879524866"
-}
