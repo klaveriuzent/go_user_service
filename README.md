@@ -2,8 +2,12 @@
 This is a Golang project that provides a foundation for building a Back-End with Golang and Postgre. The project uses Golang version 1.18 and is integrated with Postgre.
 
 ## Branch
+Always check other branch
+### main
 `main` | Role-Based Access Control (RBAC) & No Swagger Integrated (recommend for fullstack)
+### swagger
 `swagger` | Role-Based Access Control (RBAC) & Swagger Integrated (recommend for team base)
+### Initial
 `Initial` | Authentication Only & Swagger Integrated (recommend for other project with no rbac)
 
 ## Requirement
