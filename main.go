@@ -59,7 +59,6 @@ func loadDatabase() {
 		&schema.User{},
 		&schema.Profile{},
 		&schema.Account{},
-		&schema.Address{},
 	)
 }
 

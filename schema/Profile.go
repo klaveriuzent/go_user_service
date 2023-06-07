@@ -7,15 +7,14 @@ import (
 )
 
 type Profile struct {
-	Id           string    `json:"id" gorm:"primaryKey;size:50;"`
-	Email        string    `gorm:"size:255;not null;unique" json:"email"`
-	Username     string    `gorm:"size:255;not null;unique" json:"username"`
-	NickName     string    `gorm:"size:255;" json:"nickname"`
-	FullName     string    `gorm:"size:255;" json:"fullname"`
-	Picture      string    `gorm:"size:255;" json:"picture"`
-	PhoneNumber  string    `gorm:"size:15;" json:"phone_number"`
-	Addresses    []Address `gorm:"foreignKey:ProfileId"`
-	Token        string    `gorm:"size:255;" json:"token"`
+	Id           string `json:"id" gorm:"primaryKey;size:50;"`
+	Email        string `gorm:"size:255;not null;unique" json:"email"`
+	Username     string `gorm:"size:255;not null;unique" json:"username"`
+	NickName     string `gorm:"size:255;" json:"nickname"`
+	FullName     string `gorm:"size:255;" json:"fullname"`
+	Picture      string `gorm:"size:255;" json:"picture"`
+	PhoneNumber  string `gorm:"size:15;" json:"phone_number"`
+	Token        string `gorm:"size:255;" json:"token"`
 	TokenExpired time.Time
 	Department   string `gorm:"type:text;" json:"department"`
 	Expired      int    `gorm:"type:int;" json:"expired_time"`
