@@ -87,6 +87,6 @@ func serveApplication() {
 
 	// Start the server and log any errors
 	if err := router.Run(port); err != nil {
-		log.Fatalf("Failed to start server: %v", err)
+		log.Printf("Failed to start server: %v\n", err)
 	}
 }
