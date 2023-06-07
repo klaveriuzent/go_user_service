@@ -16,7 +16,6 @@ type User struct {
 	DeletedAt gorm.DeletedAt
 	IsDeleted bool      `gorm:"type:bool;default:false" json:"delete"`
 	IsActive  bool      `gorm:"type:bool;default:true" json:"status"`
-	Roles     []Role    `gorm:"many2many:user_roles;"`
 	Profiles  []Profile `gorm:"foreignKey:UserId"`
 	Accounts  []Account `gorm:"foreignKey:UserId"`
 }

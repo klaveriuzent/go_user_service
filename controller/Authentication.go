@@ -27,25 +27,12 @@ func Register(context *gin.Context) {
 		return
 	}
 
-	inputRoles := input.Role
-	dataRoles, err := model.FindRoleMapByName(inputRoles)
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
 	userID, _ := helper.GenerateUserId(3)
 	profileID, _ := helper.GenerateProfileId(3)
 	accountID, _ := helper.GenerateAccountId(3)
 
-	roleMap := []schema.Role{}
-	for _, element := range dataRoles {
-		roleMap = append(roleMap, schema.Role{Id: element.Id})
-	}
-
 	user := model.User{
 		Id:       userID,
-		Roles:    roleMap,
 		Email:    input.Email,
 		Username: input.Username,
 		Password: input.Password,

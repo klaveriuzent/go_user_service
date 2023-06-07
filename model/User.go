@@ -44,15 +44,6 @@ func FindUserById(id string) (User, error) {
 	return user, err
 }
 
-func (user *User) UserAssignRoles(id string, roleUpdates []schema.Role) (User, error) {
-	err := database.Database.Model(&user).Association("Roles").Replace(roleUpdates)
-	if err != nil {
-		return *user, err
-	}
-	res, _ := FindUserById(id)
-	return res, nil
-}
-
 func (user *User) UserGetCount() int64 {
 	var result int64
 	database.Database.Model(&user).Count(&result)

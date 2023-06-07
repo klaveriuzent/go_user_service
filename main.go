@@ -56,9 +56,7 @@ func loadEnv() {
 func loadDatabase() {
 	database.Connect()
 	database.Database.AutoMigrate(
-		&schema.Role{},
 		&schema.User{},
-		&schema.UserRole{},
 		&schema.Profile{},
 		&schema.Account{},
 		&schema.Address{},
