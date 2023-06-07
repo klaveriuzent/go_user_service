@@ -4,11 +4,11 @@ This is a Golang project that provides a foundation for building a Back-End with
 ## Branch
 Always check other branch
 ### main
-`main` | Role-Based Access Control (RBAC) & No Swagger Integrated (recommend for fullstack)
+[main](https://github.com/klaveriuzent/go_user_service/tree/main) | Role-Based Access Control (RBAC) & No Swagger Integrated (recommend for fullstack)
 ### swagger
-`swagger` | Role-Based Access Control (RBAC) & Swagger Integrated (recommend for team base)
+[swagger](https://github.com/klaveriuzent/go_user_service/tree/swagger) | Role-Based Access Control (RBAC) & Swagger Integrated (recommend for team base)
 ### Initial
-`Initial` | Authentication Only & Swagger Integrated (recommend for other project with no rbac)
+[Initial](https://github.com/klaveriuzent/go_user_service/tree/Initial) | Authentication Only & Swagger Integrated (recommend for other project with no rbac)
 
 ## Requirement
 `PostgreSQL` and `golang` on your computer.
