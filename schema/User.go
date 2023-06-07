@@ -12,10 +12,7 @@ type User struct {
 	Username  string `gorm:"size:255;not null;unique" json:"username"`
 	Password  string `gorm:"size:255;not null;" json:"-"`
 	CreatedAt time.Time
-	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt
-	IsDeleted bool      `gorm:"type:bool;default:false" json:"delete"`
-	IsActive  bool      `gorm:"type:bool;default:true" json:"status"`
 	Accounts  []Account `gorm:"foreignKey:UserId"`
 }
 
