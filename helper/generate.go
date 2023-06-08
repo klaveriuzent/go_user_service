@@ -10,7 +10,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func GenerateUserId(length int) (string, error) {
+func GenerateUserId(_ int) (string, error) {
 	prefix := "USR"
 	genNumber, _ := GenerateRandomSecureToken(3)
 	genYear, _ := getYear()
@@ -22,7 +22,7 @@ func GenerateUserId(length int) (string, error) {
 	return generate, nil
 }
 
-func GenerateAccountId(length int) (string, error) {
+func GenerateAccountId(_ int) (string, error) {
 	prefix := "ACC"
 	genNumber, _ := GenerateRandomSecureToken(3)
 	genYear, _ := getYear()
