@@ -21,54 +21,6 @@ func GenerateUserId(length int) (string, error) {
 	generate := prefix + unique_number + unique_year + getDay + genTime
 	return generate, nil
 }
-func GenerateArticleId(length int) (string, error) {
-	prefix := "ACL"
-	genNumber, _ := GenerateRandomSecureToken(3)
-	genYear, _ := getYear()
-	genTime, _ := getTime()
-	getDay, _ := getDate()
-	unique_number := strconv.Itoa(genNumber)
-	unique_year := strconv.Itoa(genYear)
-	generate := prefix + unique_number + unique_year + getDay + genTime
-	return generate, nil
-
-}
-
-func GenerateAppId(length int) (string, error) {
-	prefix := "APP"
-	genNumber, _ := GenerateRandomSecureToken(3)
-	genYear, _ := getYear()
-	genTime, _ := getTime()
-	getDay, _ := getDate()
-	unique_number := strconv.Itoa(genNumber)
-	unique_year := strconv.Itoa(genYear)
-	generate := prefix + unique_number + unique_year + getDay + genTime
-	return generate, nil
-}
-
-func GenerateAddressId(length int) (string, error) {
-	prefix := "ADD"
-	genNumber, _ := GenerateRandomSecureToken(3)
-	genYear, _ := getYear()
-	genTime, _ := getTime()
-	getDay, _ := getDate()
-	unique_number := strconv.Itoa(genNumber)
-	unique_year := strconv.Itoa(genYear)
-	generate := prefix + unique_number + unique_year + getDay + genTime
-	return generate, nil
-}
-
-func GenerateProfileId(length int) (string, error) {
-	prefix := "PRO"
-	genNumber, _ := GenerateRandomSecureToken(3)
-	genYear, _ := getYear()
-	genTime, _ := getTime()
-	getDay, _ := getDate()
-	unique_number := strconv.Itoa(genNumber)
-	unique_year := strconv.Itoa(genYear)
-	generate := prefix + unique_number + unique_year + getDay + genTime
-	return generate, nil
-}
 
 func GenerateAccountId(length int) (string, error) {
 	prefix := "ACC"
