@@ -7,7 +7,7 @@ Always check other branch
 [main](https://github.com/klaveriuzent/go_user_service/tree/main) | Role-Based Access Control (RBAC) & No Swagger Integrated (recommend for fullstack)
 ### swagger
 [swagger](https://github.com/klaveriuzent/go_user_service/tree/swagger) | Role-Based Access Control (RBAC) & Swagger Integrated (recommend for team base)
-### Initial
+### Initial (Always UPDATE)
 [Initial](https://github.com/klaveriuzent/go_user_service/tree/Initial) | Authentication Only & Swagger Integrated (recommend for other project with no rbac)
 
 ## Requirement
