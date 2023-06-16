@@ -3,6 +3,7 @@ package controller
 import (
 	"fmt"
 	"net/http"
+	"time"
 	"userservice/helper"
 	"userservice/model"
 	"userservice/schema"
@@ -88,6 +89,15 @@ func Login(context *gin.Context) {
 	err = user.ValidatePassword(input.Password)
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"msg": "Wrong Password"})
+		return
+	}
+
+	now := time.Now()
+	user.LastLoginAt = &now
+
+	err = model.UpdateUser(&user)
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update LastLoginAt"})
 		return
 	}
 

@@ -18,6 +18,11 @@ func (user *User) Save() (*User, error) {
 	return user, err
 }
 
+func UpdateUser(user *User) error {
+	err := database.Database.Save(user).Error
+	return err
+}
+
 func (user *User) BeforeSave(*gorm.DB) error {
 	passwordHash, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
