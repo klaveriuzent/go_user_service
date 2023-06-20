@@ -18,11 +18,6 @@ func (user *User) Save() (*User, error) {
 	return user, err
 }
 
-func UpdateUser(user *User) error {
-	err := database.Database.Save(user).Error
-	return err
-}
-
 func (user *User) BeforeSave(*gorm.DB) error {
 	passwordHash, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
@@ -37,9 +32,21 @@ func (user *User) ValidatePassword(password string) error {
 	return bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 }
 
-func FindUserByUsername(username string) (User, error) {
+// func FindUserByUsername(username string) (User, error) {
+// 	var user User
+// 	err := database.Database.Where("username=?", username).First(&user).Error
+// 	return user, err
+// }
+
+func FindUserByUsername(identifier string) (User, error) {
 	var user User
-	err := database.Database.Where("username=?", username).First(&user).Error
+	err := database.Database.Where("username = ? OR email = ?", identifier, identifier).First(&user).Error
+	return user, err
+}
+
+func FindUserByEmail(email string) (User, error) {
+	var user User
+	err := database.Database.Where("email = ?", email).First(&user).Error
 	return user, err
 }
 

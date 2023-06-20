@@ -3,6 +3,7 @@ package controller
 import (
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 	"userservice/helper"
 	"userservice/model"
@@ -80,24 +81,42 @@ func Login(context *gin.Context) {
 		return
 	}
 
-	user, err := model.FindUserByUsername(input.Username)
-	if err != nil {
-		context.JSON(http.StatusNotFound, gin.H{"msg": "User Not Found"})
-		return
+	var user model.User
+	if strings.Contains(input.Username, "@") {
+		// Jika input mengandung '@', artinya itu email
+		foundUser, err := model.FindUserByEmail(input.Username)
+		if err != nil {
+			context.JSON(http.StatusNotFound, gin.H{"msg": "User Not Found"})
+			return
+		}
+		user = foundUser
+	} else {
+		foundUser, err := model.FindUserByUsername(input.Username)
+		if err != nil {
+			context.JSON(http.StatusNotFound, gin.H{"msg": "User Not Found"})
+			return
+		}
+		user = foundUser
 	}
 
-	err = user.ValidatePassword(input.Password)
+	err := user.ValidatePassword(input.Password)
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"msg": "Wrong Password"})
 		return
 	}
 
-	now := time.Now()
-	user.LastLoginAt = &now
-
-	err = model.UpdateUser(&user)
+	account, err := model.FindAccountByUserId(user.Id)
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update LastLoginAt"})
+		context.JSON(http.StatusNotFound, gin.H{"msg": "Account Not Found"})
+		return
+	}
+
+	currentTime := time.Now()
+	account.LastLoginAt = &currentTime
+
+	err = model.UpdateAccount(&account)
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update last login time"})
 		return
 	}
 

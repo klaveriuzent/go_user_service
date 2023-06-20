@@ -13,6 +13,11 @@ func (emp *Account) Save() (*Account, error) {
 	return emp, err
 }
 
+func UpdateAccount(emp *Account) error {
+	err := database.Database.Save(&emp).Error
+	return err
+}
+
 func FindAccountAll() ([]Account, error) {
 	var emp []Account
 	err := database.Database.Find(&emp).Error
