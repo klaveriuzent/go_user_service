@@ -32,21 +32,15 @@ func (user *User) ValidatePassword(password string) error {
 	return bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 }
 
-// func FindUserByUsername(username string) (User, error) {
-// 	var user User
-// 	err := database.Database.Where("username=?", username).First(&user).Error
-// 	return user, err
-// }
-
 func FindUserByUsername(identifier string) (User, error) {
 	var user User
-	err := database.Database.Where("username = ? OR email = ?", identifier, identifier).First(&user).Error
+	err := database.Database.Where("username = ?", identifier).First(&user).Error
 	return user, err
 }
 
-func FindUserByEmail(email string) (User, error) {
+func FindUserByEmail(identifier string) (User, error) {
 	var user User
-	err := database.Database.Where("email = ?", email).First(&user).Error
+	err := database.Database.Where("email = ?", identifier).First(&user).Error
 	return user, err
 }
 
