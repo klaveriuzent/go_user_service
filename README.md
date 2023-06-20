@@ -1,5 +1,5 @@
 # go_user_service
-This is a Golang project that provides a foundation for building a Back-End with Golang and Postgre. The project uses Golang version 1.18 and is integrated with Postgre and Swagger.
+This is a Golang project that provides a foundation for building a Back-End with Golang and Postgre. The project uses Golang version 1.20 and is integrated with Postgre and Swagger.
 
 ## Requirement
 `PostgreSQL` and `golang` on your computer.
