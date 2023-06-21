@@ -27,5 +27,6 @@ jobs:
     - name: Install dependencies
       run: go mod download
 
-    - name: Check Main File Exist
-      run: go run ./util/test/...
+    - name: Run Tests
+      run: |
+        go test -v ./util/test/...
