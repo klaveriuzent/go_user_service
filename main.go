@@ -55,10 +55,13 @@ func loadEnv() {
 // Connect to the database and perform auto-migration
 func loadDatabase() {
 	database.Connect()
-	database.Database.AutoMigrate(
+	err := database.Database.AutoMigrate(
 		&schema.User{},
 		&schema.Account{},
 	)
+	if err != nil {
+		log.Fatalf("An error occurred while performing the migration: %v", err)
+	}
 }
 
 // Start the application server using Gin framework
