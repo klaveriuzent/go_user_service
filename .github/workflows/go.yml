@@ -29,13 +29,3 @@ jobs:
 
     - name: Test
       run: go test ./...
-
-    - name: Deploy
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        script: |
-          cd /path/to/deploy
-          mv /path/to/app /path/to/deploy
