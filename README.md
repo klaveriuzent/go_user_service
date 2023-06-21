@@ -1,3 +1,5 @@
+[![Initial Test](https://github.com/klaveriuzent/go_user_service/actions/workflows/go.yml/badge.svg?branch=Initial)](https://github.com/klaveriuzent/go_user_service/actions/workflows/go.yml)
+
 # go_user_service
 This is a Golang project that provides a foundation for building a Back-End with Golang and Postgre. The project uses Golang version 1.20 and is integrated with Postgre and Swagger.
 
