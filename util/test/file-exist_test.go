@@ -18,6 +18,18 @@ func TestIsMainFileExists(t *testing.T) {
 	}
 }
 
+func TestIsGoModFileExists(t *testing.T) {
+	// Check main.go file
+	_, err := os.Stat("./../../go.mod")
+	if err != nil {
+		if os.IsNotExist(err) {
+			t.Fatal("File go.mod not found in the root directory")
+		} else {
+			t.Fatalf("An error occurred while checking the go.mod file: %v", err)
+		}
+	}
+}
+
 func TestIsDatabaseFileExists(t *testing.T) {
 	// Check database.go file
 	_, err := os.Stat("./../../database/database.go")
