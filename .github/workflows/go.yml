@@ -19,13 +19,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3.5.3
     
-    - name: Setup Golang with cache
+    - name: Setup Golang
       uses: magnetikonline/action-golang-cache@v4
       with:
           go-version-file: go.mod
 
     - name: Install dependencies
       run: go mod download
+
+    - name: Format code
+      run: go get golang.org/x/tools/cmd/gonightly && gonightly -w .
 
     - name: Test
       run: go test ./...
