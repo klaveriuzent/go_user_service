@@ -7,7 +7,7 @@ import (
 
 func IsMainFileExists(t *testing.T) {
 	// Cek apakah file main.go ada di direktori root
-	_, err := os.Stat("../main.go")
+	_, err := os.Stat("./../../main.go")
 	if err != nil {
 		if os.IsNotExist(err) {
 			t.Fatal("File main.go tidak ditemukan di direktori root")
